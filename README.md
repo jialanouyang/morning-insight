@@ -15,13 +15,14 @@
   </p>
   <p><b>如果这个项目对你有帮助，欢迎点一个 ⭐ Star 支持一下 —— 这是让更多有同样需求的人发现它的最好方式。</b></p>  
   <p>  
+    <a href="https://morning-insight-demo.app.workbuddy.host/">在线演示</a> · 
     <a href="#快速开始">快速开始</a> ·  
     <a href="#功能一览">功能一览</a> ·  
     <a href="#目录结构">目录结构</a> ·  
     <a href="#配置说明">配置说明</a> ·  
     <a href="docs/api.md">API 文档</a> ·  
     <a href="docs/plugin-dev.md">插件开发</a> · 
-    <a href="#english">English</a>
+    <a href="README.en.md">English</a>
   </p>  
 </div>
 
@@ -39,6 +40,9 @@
 - **模型可换**：任意 OpenAI 兼容接口（OpenAI / DeepSeek / Kimi / 智谱 / 通义千问 / 硅基流动 / Ollama 本地…）。
 - **无 Key 也能跑**：未配置模型时输出「素材版」晨报，知识库使用内置离线检索。
 - **多用户隔离**：每个用户拥有独立的配置、晨报、知识库、追踪对象、预警规则与定时任务。
+
+> **在线演示**：https://morning-insight-demo.app.workbuddy.host/  
+> 演示账号 `demo@example.com` / `demo1234`；演示环境已关闭注册与定时抓取。
 
 ## 功能一览
 
@@ -127,22 +131,21 @@
 
 ## 界面预览
 
-| 登录 | 首页                                                                    |
-| -- | --------------------------------------------------------------------- |
-| 登录 | 一、整批重新截取项目截图：确保每张截图完整展示对应界面内容，整批截图风格统一（相同的主题、窗口尺寸、分辨率和界面状态），避免新旧版本混用。 |
+| 登录 | 首页 |
+| -- | -- |
+| <img src="docs/screenshots/01-login.png" width="420" alt="登录" /> | <img src="docs/screenshots/02-dashboard.png" width="420" alt="首页" /> |
 
 | 晨报历史 | 知识库问答 |
 | ---- | ----- |
-| 晨报历史 | 知识库问答 |
+| <img src="docs/screenshots/03-reports.png" width="420" alt="晨报历史" /> | <img src="docs/screenshots/04-knowledge.png" width="420" alt="知识库问答" /> |
 
 | 动态追踪 | 关键词预警 |
 | ---- | ----- |
-| 动态追踪 | 关键词预警 |
+| <img src="docs/screenshots/05-competitors.png" width="420" alt="动态追踪" /> | <img src="docs/screenshots/06-alerts.png" width="420" alt="关键词预警" /> |
 
 | 插件 | 设置 |
 | -- | -- |
-| 插件 | 设置 |
-
+| <img src="docs/screenshots/08-plugins.png" width="420" alt="插件" /> | <img src="docs/screenshots/09-settings.png" width="420" alt="设置" /> |
 > 周报月报、管理后台、关于与自检的截图见 [`docs/screenshots/`](docs/screenshots/)；>   
 > 截图均使用演示数据，不含任何真实账号或密钥。
 
@@ -426,18 +429,4 @@ cd frontend && npm run build
 
 <a id="english"></a>
 
-**English**
-
-**Morning Insight** is an open-source, self-hosted industry-intelligence briefing platform.
-
-It fetches Chinese and English sources (RSS / API / web / plugin) on a configurable schedule, generates a  
-structured briefing with any OpenAI-compatible LLM according to your focus points and analyst roles, and  
-delivers it to email, WeCom, DingTalk, Feishu, Telegram, Slack, Discord, Web Push and more. Every issue is  
-archived, indexed and searchable; a built-in RAG knowledge base answers questions with citations. One-click  
-translation keeps the original layout while rendering a briefing in your UI language. Extras: competitor  
-tracking, keyword alerts, weekly/monthly digests, TTS audio briefings, a plugin system and multi-user isolation.
-
-Quick start: `docker compose up -d` → open `http://localhost:8080` → register (the first user becomes admin)  
-→ configure AI & sources in Settings → generate your first briefing.
-
-</div>
+**English** — a full English README is available at **[README.en.md](README.en.md)**.
