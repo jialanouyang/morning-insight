@@ -1,0 +1,12 @@
+# 可选增强依赖：按需安装，装错/不装都不影响主流程（代码会检测并优雅降级）
+#
+#   pip install -r requirements-optional.txt
+#
+# - playwright : JS 渲染站点抓取（网页源兜底）安装后还需执行 `playwright install chromium`
+# - pywebpush  : Web Push 浏览器推送（需 VAPID 密钥，可自动生成）
+# - chromadb   : 本地向量库（知识库规模较大时比内置 SQLite 检索更快）
+# - numpy      : 加速向量检索
+playwright>=1.44
+pywebpush>=2.0
+chromadb>=0.5
+numpy>=1.26

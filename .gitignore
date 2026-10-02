@@ -1,0 +1,39 @@
+# 依赖与构建产物
+node_modules/
+dist/
+build/
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+coverage/
+.coverage
+htmlcov/
+
+# 数据与密钥（不要提交任何本地运行数据）
+data/
+backend/data/
+*.db
+*.sqlite3
+*.sqlite
+*.mp3
+*.ogg
+*.wav
+.env
+.env.*
+!.env.example
+backend/.env
+
+# 编辑器与本机配置
+.workbuddy/
+.idea/
+.vscode/
+.cursor/
+.DS_Store
+Thumbs.db
+desktop.ini

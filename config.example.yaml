@@ -1,0 +1,136 @@
+# 晨析 Morning Insight —— 配置示例
+#
+# 本文件是「带注释的配置参考」，不是运行时读取的文件。
+# 实际生效的两类配置：
+#
+#   1) 部署级配置（环境变量）→ 复制 backend/.env.example 为 backend/.env
+#   2) 用户级配置（界面里配）→ 「设置」页面，每个用户各自独立
+#
+# --------------------------------------------------------------------------- #
+# 一、部署级配置（backend/.env，KEY=VALUE 格式）
+# --------------------------------------------------------------------------- #
+deploy:
+  # 数据库连接串。默认 SQLite；也可用 PostgreSQL：
+  #   postgresql+psycopg://user:pass@localhost:5432/morning_insight
+  DATABASE_URL: sqlite:///./data/morning_insight.db
+
+  # JWT 签名密钥。生产环境务必改成随机长字符串：
+  #   python -c "import secrets;print(secrets.token_urlsafe(48))"
+  SECRET_KEY: dev-secret-do-not-use-in-production
+
+  # 登录令牌有效期（小时）
+  TOKEN_EXPIRE_HOURS: 72
+
+  # 定时任务时区（用于「每天 07:30」这类调度）
+  TIMEZONE: Asia/Shanghai
+
+  # 数据目录：SQLite 库、语音音频、导出文件都在这里
+  DATA_DIR: ./data
+
+  # 是否允许在界面安装插件。插件是本机 Python 代码，
+  # 设为 false 只关闭安装入口，已安装插件照常运行。
+  PLUGIN_INSTALL_ENABLED: true
+
+  # 是否允许自助注册。设为 false 后仅管理员可创建账号；
+  # 但第一个注册的用户始终可注册，并自动成为管理员。
+  ALLOW_REGISTRATION: true
+
+  # 插件目录，默认指向仓库根的 plugins/
+  PLUGIN_DIR: /absolute/path/to/plugins
+
+# --------------------------------------------------------------------------- #
+# 二、用户级配置（在「设置」页面里配置，不入库到 .env）
+# --------------------------------------------------------------------------- #
+# 每个用户各自独立，互不影响。以下列出全部配置项及其默认值。
+user_config:
+  # 行业与关键词
+  industry: ""
+  industries: []
+  keywords: []
+
+  # 关注点：8 个内置（融资事件 / 政策监管 / 技术突破 / 动态追踪 /
+  # 人才流动 / 市场数据 / 竞争格局 / 供应链），可改定义、可完全自定义
+  focus_points: []      # 留空则使用内置默认值
+
+  # 角色：7 个内置模板（融资顾问 / 投资人 / 产品经理 / 创业者 /
+  # 研究员 / 销售 / 市场），Prompt 可见可编辑，可一人多角色
+  roles: []             # 留空则使用内置默认值
+
+  # 信息源：默认启用实测可用的 22 个源；
+  # 完整源清单（含政府机构 / 行业数据库 / 社交社区 / 行业协会）可一键添加
+  sources: []
+
+  # AI 模型（任意 OpenAI 兼容接口）
+  ai_config:
+    base_url: ""                    # 如 https://api.deepseek.com/v1
+    api_key: ""
+    model: gpt-4o-mini
+    embedding_model: ""             # 知识库向量化；留空则用内置离线算法
+    prompt: ""                      # 自定义附加要求
+    temperature: 0.45
+    length: brief                   # brief | detailed
+
+  # 推送渠道：默认全部关闭，勾选后展开配置
+  push_config: {}                   # email / wecom / dingtalk / feishu / telegram /
+                                    # slack / discord / webpush / bark / serverchan /
+                                    # pushplus / line / webhook
+
+  # 调度
+  schedule:
+    enabled: false
+    time: "07:30"
+    days: daily                     # daily | weekday | weekly | custom
+    weekday: 1                      # days=weekly 时生效，1=周一
+    cron: ""                        # days=custom 时生效，如 "0 7 * * 1-5"
+    timezone: Asia/Shanghai
+    periodical:
+      weekly:  { enabled: false, weekday: 1, time: "08:30" }
+      monthly: { enabled: false, day: 1, time: "08:30" }
+
+  # 晨报模板与语言
+  template: brief                   # brief | magazine | data | card | terminal | print
+  template_config:
+    custom_html: ""                 # 高级：用 {{title}} / {{content}} 占位
+    custom_css: ""
+  ui_language: zh                   # zh | en（界面语言）
+  report_language: zh               # zh | en | bilingual（晨报语言）
+  translate_enabled: false          # 把外文源翻译为晨报语言
+
+  # 语音晨报
+  tts_config:
+    enabled: false
+    provider: edge                  # edge（免费） | openai
+    voice: zh-CN-XiaoxiaoNeural
+    format: mp3                     # mp3 | ogg
+    length: brief
+    push: false                     # 音频是否一并推送到渠道
+
+  # 知识库 RAG
+  knowledge_config:
+    enabled: true
+    auto_ingest: true
+    top_k: 6
+    embedding_provider: auto        # auto | openai | zhipu | bge | local
+    embedding_model: ""
+    vector_store: builtin           # builtin | chroma | qdrant | pgvector
+
+  # 抓取参数
+  fetch_config:
+    since_hours: 24                 # 时间窗
+    limit_per_source: 60            # 每个源最多抓取
+    use_ai_summary: false           # 对素材做 AI 单条摘要（更慢更贵）
+    use_ai_classify: false          # 对素材做 AI 自动分类（更准）
+    render_js: false                # 网页源用 Playwright 渲染 JS（需可选依赖）
+
+# --------------------------------------------------------------------------- #
+# 三、可选依赖（不装也能跑，装了解锁额外能力）
+# --------------------------------------------------------------------------- #
+#   pip install -r backend/requirements-optional.txt
+#
+#   playwright   → 网页源渲染 JS、晨报导出为图片（另需 playwright install chromium）
+#   pywebpush    → Web Push 浏览器推送（可在界面一键生成 VAPID 密钥）
+#   chromadb     → 使用 Chroma 作为向量库（默认使用内置 SQLite 向量检索）
+#   numpy        → 加速向量运算
+#
+# 语音晨报使用 Edge TTS（随 requirements.txt 安装，免费无需 Key）；
+# 若要用 OpenAI TTS，在「设置 → AI 模型」填好 base_url 与 API Key 即可。

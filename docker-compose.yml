@@ -1,0 +1,31 @@
+services:
+  backend:
+    build: ./backend
+    container_name: morning-insight-backend
+    restart: unless-stopped
+    environment:
+      - SECRET_KEY=${SECRET_KEY:-change-me-to-a-random-secret-string}
+      - DATABASE_URL=sqlite:////data/morning_insight.db
+      - TIMEZONE=${TIMEZONE:-Asia/Shanghai}
+      - DATA_DIR=/data
+      - PLUGIN_DIR=/plugins
+      - ALLOW_REGISTRATION=${ALLOW_REGISTRATION:-true}
+      - PLUGIN_INSTALL_ENABLED=${PLUGIN_INSTALL_ENABLED:-true}
+    volumes:
+      - mi-data:/data
+      # 插件目录挂进容器：放进去的插件在「插件」页点「扫描插件目录」即可登记
+      - ./plugins:/plugins
+    expose:
+      - "8000"
+
+  frontend:
+    build: ./frontend
+    container_name: morning-insight-frontend
+    restart: unless-stopped
+    ports:
+      - "${WEB_PORT:-8080}:80"
+    depends_on:
+      - backend
+
+volumes:
+  mi-data:

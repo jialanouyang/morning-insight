@@ -1,0 +1,24 @@
+name: push-example
+type: push
+version: 0.1.0
+author: morning-insight
+description: 示例推送插件：把晨报以自定义格式发送到任意 HTTP 接口（演示签名头与自定义 JSON 结构）。
+entry_point: plugin.py
+permissions:
+  - network
+  - secrets
+config_schema:
+  type: object
+  properties:
+    url:
+      type: string
+      title: 目标接口地址
+      default: ""
+    token:
+      type: string
+      title: 鉴权 Token（可选）
+      default: ""
+    mode:
+      type: string
+      title: 发送格式（json / markdown）
+      default: json

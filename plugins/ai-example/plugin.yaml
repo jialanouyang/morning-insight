@@ -1,0 +1,28 @@
+name: ai-example
+type: ai
+version: 0.1.0
+author: morning-insight
+description: 示例 AI 处理插件：对文本做自定义加工。未配置模型时降级为规则处理（提取关键词与摘要）。
+entry_point: plugin.py
+permissions:
+  - llm
+  - network
+config_schema:
+  type: object
+  properties:
+    base_url:
+      type: string
+      title: OpenAI 兼容接口地址（可选）
+      default: ""
+    api_key:
+      type: string
+      title: API Key（可选）
+      default: ""
+    model:
+      type: string
+      title: 模型名
+      default: gpt-4o-mini
+    instruction:
+      type: string
+      title: 处理指令
+      default: 用一句话总结这段内容，并列出 3 个关键词。

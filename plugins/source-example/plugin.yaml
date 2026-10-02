@@ -1,0 +1,23 @@
+name: source-example
+type: source
+version: 0.1.0
+author: morning-insight
+description: 示例数据源插件：从任意 JSON 接口拉取条目并转换为晨析素材格式（默认演示 Hacker News 搜索接口）。
+entry_point: plugin.py
+permissions:
+  - network
+config_schema:
+  type: object
+  properties:
+    url:
+      type: string
+      title: 接口地址
+      default: https://hn.algolia.com/api/v1/search_by_date?tags=story
+    hits_path:
+      type: string
+      title: 列表所在字段
+      default: hits
+    query:
+      type: string
+      title: 搜索关键词（可选）
+      default: ""

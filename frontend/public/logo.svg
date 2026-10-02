@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <!-- 晨析 Morning Insight 品牌图标：橙蓝圆角方块矩阵 -->
+  <circle cx="7" cy="8" r="3.5" fill="#F6A821"/>
+  <rect x="3" y="16" width="8" height="8" rx="2.5" fill="#2B9CD8"/>
+  <rect x="3" y="30" width="8" height="8" rx="2.5" fill="#2B9CD8"/>
+  <rect x="15" y="4" width="20" height="20" rx="6" fill="#F6A821"/>
+  <rect x="15" y="30" width="8" height="8" rx="2.5" fill="#F6A821"/>
+  <rect x="27" y="30" width="8" height="8" rx="2.5" fill="#2B9CD8"/>
+</svg>
