@@ -3,14 +3,25 @@
 <div align="center">  
   <img src="frontend/public/logo.svg" width="72" alt="晨析 Morning Insight" />  
   <p><b>每天清晨，一份懂你的行业分析晨报</b></p>  
-  <p>开源 · 自托管 · AI 驱动 · 多用户</p>  
+  <p>开源 · 自托管 · AI 驱动 · 多用户</p>
+  <p>
+    <a href="https://github.com/jialanouyang/morning-insight/releases"><img src="https://img.shields.io/github/v/release/jialanouyang/morning-insight?color=f6a821&label=release" alt="Release" /></a>
+    <a href="https://github.com/jialanouyang/morning-insight/actions/workflows/ci.yml"><img src="https://github.com/jialanouyang/morning-insight/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License" /></a>
+    <img src="https://img.shields.io/badge/Python-3.10%2B-3776ab.svg" alt="Python" />
+    <img src="https://img.shields.io/badge/FastAPI-0.115%2B-009688.svg" alt="FastAPI" />
+    <img src="https://img.shields.io/badge/React-18-61dafb.svg" alt="React" />
+    <img src="https://img.shields.io/badge/Docker-compose-2496ed.svg" alt="Docker" />
+  </p>
+  <p><b>如果这个项目对你有帮助，欢迎点一个 ⭐ Star 支持一下 —— 这是让更多有同样需求的人发现它的最好方式。</b></p>  
   <p>  
     <a href="#快速开始">快速开始</a> ·  
     <a href="#功能一览">功能一览</a> ·  
     <a href="#目录结构">目录结构</a> ·  
     <a href="#配置说明">配置说明</a> ·  
     <a href="docs/api.md">API 文档</a> ·  
-    <a href="docs/plugin-dev.md">插件开发</a>  
+    <a href="docs/plugin-dev.md">插件开发</a> · 
+    <a href="#english">English</a>
   </p>  
 </div>
 
@@ -397,6 +408,14 @@ cd frontend && npm run build
 - [ ] 移动端适配增强
 - [ ] 团队共享信息源与模板库
 
+## Star 支持
+
+如果晨析（Morning Insight）帮到了你，欢迎在右上角点一个 ⭐ **Star** —— 这是让更多有同样需求的人发现它的最好方式，也是项目持续维护的动力。
+
+- 遇到问题或想要新功能 → [提 Issue](https://github.com/jialanouyang/morning-insight/issues)
+- 想一起完善 → 见 [CONTRIBUTING.md](CONTRIBUTING.md)
+- 已经用起来了 → 欢迎在 Issue 里留言你的使用场景，我们会加进 README 的「谁在用」
+
 ## License
 
 [Apache License 2.0](LICENSE)
@@ -404,6 +423,8 @@ cd frontend && npm run build
 ---
 
 <div align="center">
+
+<a id="english"></a>
 
 **English**
 
